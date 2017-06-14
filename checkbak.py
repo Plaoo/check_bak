@@ -5,8 +5,12 @@ from pathlib import Path
 directory = os.fsencode(os.curdir)
 pathlist = Path(os.curdir)
 
-for path in pathlist.glob('**/*.zip'):
-        archive = zipfile.ZipFile(str(path))
-        er = archive.testzip()
-        if(archive.testzip() != None):
-            print(path, er)
+def checkzip(path):
+    for path in pathlist.glob('**/*.zip'):
+            archive = zipfile.ZipFile(str(path))
+            er = archive.testzip()
+            if(archive.testzip() != None):
+                print(path, er)
+
+if __name__ == "__main__":
+    checkzip(pathlist)
