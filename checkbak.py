@@ -2,6 +2,7 @@ import zipfile
 import os
 import rarfile
 import lzma
+import multiprocessing
 
 from pathlib import Path
 
@@ -14,6 +15,7 @@ pathlist = Path(os.curdir)
 def checkzip(path):
     for path in pathlist.glob('**/*.zip'):
         archive = zipfile.ZipFile(str(path))
+        print(archive)
         er = archive.testzip()
         if (archive.testzip() != None):
             print(path, er)
@@ -29,4 +31,5 @@ def check7z(path):
 
 
 if __name__ == "__main__":
+
     checkzip(pathlist)
